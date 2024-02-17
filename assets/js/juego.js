@@ -57,9 +57,34 @@ const pedirCarta = () => {
     return carta
 }
 
+//pedirCarta()
+
+//funcion para conocer el valor de la carta
+
+const valorCarta = (carta) => {
+
+    let valor = carta.substring(0, carta.length - 1) //substring= metodo para cortar los string
 
 
-for (i = 0; i < 100; i++) {
-    pedirCarta()
+    /*  if (isNaN(valor)) { //pregunta si no es un numero
+         console.log('no es un numero');
+         valor = valor === 'A' ? 11 : 10;
+     } else {
+         console.log('es un numero');
+         valor = valor * 1
+     } */
+
+    isNaN(valor) ?
+        valor = valor === 'A' ? 11 : 10
+        : valor = valor * 1
+
+    console.log(valor);
+    return valor;
+
 }
+
+const valor = valorCarta(pedirCarta())
+console.log({ valor });
+
+
 
