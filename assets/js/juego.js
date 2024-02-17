@@ -8,6 +8,8 @@
 let deck = [];
 const tipos = ['C', 'D', 'H', 'S']
 const especiales = ['A', 'J', 'Q', 'K']
+
+//funcion para crear una nueva baraja de cartas mezcladas
 const crearDeck = () => {
 
     for (let i = 2; i <= 10; i++) {
@@ -27,12 +29,37 @@ const crearDeck = () => {
             deck.push(esp + tipo)
         }
     }
+
+
+    deck = _.shuffle(deck);
+
+    console.log(deck);
+
+    return deck;
+
 }
 
 crearDeck()
 
-console.log(deck);
 
-deck = _.shuffle(deck);
+//funcion para sacar una carta de la baraja y eliminarla del mazo
 
-console.log(deck);
+const pedirCarta = () => {
+
+    if (deck.length === 0) { //medida de seg cuando no hay nmas cartas en la baraja
+        throw 'no hay cartas en el deck';
+    }
+
+    let carta = deck.pop()
+
+    console.log(deck, carta);
+
+    return carta
+}
+
+
+
+for (i = 0; i < 100; i++) {
+    pedirCarta()
+}
+
