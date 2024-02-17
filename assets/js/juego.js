@@ -9,6 +9,13 @@ let deck = [];
 const tipos = ['C', 'D', 'H', 'S']
 const especiales = ['A', 'J', 'Q', 'K']
 
+let puntosJugador = 0;
+let puntosComputadora = 0;
+
+//referencias de html
+const botonPedir = document.querySelector('#botonPedir')
+const smalls = document.querySelectorAll('small')
+
 //funcion para crear una nueva baraja de cartas mezcladas
 const crearDeck = () => {
 
@@ -50,9 +57,9 @@ const pedirCarta = () => {
         throw 'no hay cartas en el deck';
     }
 
-    let carta = deck.pop()
+    const carta = deck.pop()
 
-    console.log(deck, carta);
+    /*  console.log(deck, carta); */
 
     return carta
 }
@@ -78,13 +85,21 @@ const valorCarta = (carta) => {
         valor = valor === 'A' ? 11 : 10
         : valor = valor * 1
 
-    console.log(valor);
+    /* console.log(valor); */
     return valor;
 
 }
 
-const valor = valorCarta(pedirCarta())
-console.log({ valor });
+//EVENTOS
+//escuchar un evento
+botonPedir.addEventListener('click', () => {
+    const carta = pedirCarta()
+    console.log(carta);
+    puntosJugador = puntosJugador + valorCarta(carta)
+    smalls[0].innerText = puntosJugador
+    console.log(puntosJugador);
+})
+
 
 
 
