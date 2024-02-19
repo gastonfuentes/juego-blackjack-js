@@ -117,6 +117,20 @@ const turnoComputadora = (puntosAVencer) => {
     } while (puntosComputadora < puntosAVencer && puntosAVencer <= 21);
 
 
+    setTimeout(() => {
+        if (puntosJugador <= 21 && puntosJugador > puntosComputadora) {
+            alert('gano el jugador')
+        } else if (puntosJugador === 21 && puntosComputadora !== 21) {
+            alert('gano el jugador')
+        } else if (puntosComputadora > 21) {
+            alert('gana el jugador')
+        } else {
+            alert('gana la computadora')
+        }
+    }, 50);
+
+
+
 }
 
 //EVENTOS
@@ -168,7 +182,21 @@ botonDetener.addEventListener('click', () => {
 })
 
 botonNuevoJuevo.addEventListener('click', () => {
-    location.reload()
+    // location.reload()
+
+    console.clear()
+
+    deck = [] //limpiamos a la fuerza la baraja
+    deck = crearDeck()
+    smalls[0].innerText = 0;
+    smalls[1].innerText = 0;
+    puntosJugador = 0;
+    puntosComputadora = 0;
+    contenedorCartasJugador.innerText = '';
+    contenedorCartasMaquina.innerText = '';
+    botonPedir.disabled = false
+    botonDetener.disabled = false
+
 })
 
 
