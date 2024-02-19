@@ -14,7 +14,11 @@ let puntosComputadora = 0;
 
 //referencias de html
 const botonPedir = document.querySelector('#botonPedir')
+const botonDetener = document.querySelector('#botonDetener')
+const botonNuevoJuevo = document.querySelector('#botonNuevo')
 const smalls = document.querySelectorAll('small')
+const contenedorCartasJugador = document.querySelector('#jugador-cartas')
+const contenedorCartasMaquina = document.querySelector('#computadora-cartas')
 
 //funcion para crear una nueva baraja de cartas mezcladas
 const crearDeck = () => {
@@ -90,16 +94,81 @@ const valorCarta = (carta) => {
 
 }
 
+
+//logica para turno de la computadora
+const turnoComputadora = (puntosAVencer) => {
+
+    do {
+
+        const carta = pedirCarta()
+        console.log(carta);
+
+        puntosComputadora = puntosComputadora + valorCarta(carta)
+        smalls[1].innerText = puntosComputadora
+        console.log(puntosComputadora);
+
+        const imgCarta = document.createElement('img') //creamos una etiqueta img
+        imgCarta.src = `assets/cartas/${carta}.png` //le añadimos el src con la carta que obtuvimos
+        imgCarta.classList.add('carta') //le agregamos las clases de css necesarias
+
+        contenedorCartasMaquina.append(imgCarta)
+
+
+    } while (puntosComputadora < puntosAVencer && puntosAVencer <= 21);
+
+
+}
+
 //EVENTOS
 //escuchar un evento
 botonPedir.addEventListener('click', () => {
+
+
     const carta = pedirCarta()
     console.log(carta);
+
     puntosJugador = puntosJugador + valorCarta(carta)
     smalls[0].innerText = puntosJugador
     console.log(puntosJugador);
+
+
+    const imgCarta = document.createElement('img') //creamos una etiqueta img
+    imgCarta.src = `assets/cartas/${carta}.png` //le añadimos el src con la carta que obtuvimos
+    imgCarta.classList.add('carta') //le agregamos las clases de css necesarias
+
+    contenedorCartasJugador.append(imgCarta) //insertamos la carta creada en el div contenedor
+
+
+    //si el jugador se pasa de 21 detener su juego
+
+    /* puntosJugador > 21 ?
+        botonPedir.disabled = true
+        : puntosJugador === 21 ? botonPedir.disabled = true : '';; */
+
+    if (puntosJugador > 21) {
+        botonPedir.disabled = true;
+        botonDetener.disabled = true;
+        console.warn('perdiste guachin te pasaste');
+        turnoComputadora(puntosJugador)
+
+    } else if (puntosJugador === 21) {
+        botonPedir.disabled = true;
+        botonDetener.disabled = true;
+        console.warn('CONSEGUISTE 21 GUACHOOO');
+        turnoComputadora(puntosJugador)
+    }
+
+
 })
 
+botonDetener.addEventListener('click', () => {
+    botonPedir.disabled = true
+    botonDetener.disabled = true
+    turnoComputadora(puntosJugador)
+})
 
+botonNuevoJuevo.addEventListener('click', () => {
+    location.reload()
+})
 
 
