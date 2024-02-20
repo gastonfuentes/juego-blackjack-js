@@ -1,11 +1,5 @@
-/* 
-2c = two the clubs (treboles)
-2d = diaminds (diamantes)
-2h = hearts (corazones)
-2s = spades (picas)
-*/
 
-(() => {
+const miModulo = (() => {
 
     'use strict'
 
@@ -22,9 +16,6 @@
         botonDetener = document.querySelector('#botonDetener'),
         botonNuevoJuevo = document.querySelector('#botonNuevo')
 
-    /*    const contenedorCartasJugador = document.querySelector('#jugador-cartas'),
-           contenedorCartasMaquina = document.querySelector('#computadora-cartas') */
-
     const smalls = document.querySelectorAll('small'),
         divCartasJugadores = document.querySelectorAll('.divCartas');
 
@@ -38,7 +29,13 @@
         for (let i = 0; i < numJugadores; i++) {
             puntosJugadores.push(0)
         }
-        console.log(puntosJugadores);
+
+        smalls.forEach(elem => elem.innerText = 0)
+        divCartasJugadores.forEach(elem => elem.innerText = '')
+
+        botonPedir.disabled = false
+        botonDetener.disabled = false
+
     }
 
     //funcion para crear una nueva baraja de cartas mezcladas
@@ -115,23 +112,11 @@
 
     }
 
+    //funcion que determina quien gano y manda un mensaje
 
-    //logica para turno de la computadora
+    const determinarGanador = () => {
 
-    const turnoComputadora = (puntosAVencer) => {
-
-        let puntosComputadora = 0;
-        let puntosJugador = puntosJugadores[0];
-
-        do {
-
-            const carta = pedirCarta()
-            puntosComputadora = acumularPuntos(puntosJugadores.length - 1, carta)
-
-            crearCarta(carta, puntosJugadores.length - 1)
-
-        } while (puntosComputadora < puntosAVencer && puntosAVencer <= 21);
-
+        const [puntosJugador, puntosComputadora] = puntosJugadores
 
         setTimeout(() => {
             if (puntosJugador <= 21 && puntosJugador > puntosComputadora) {
@@ -145,7 +130,27 @@
             }
         }, 50);
 
+    }
 
+
+    //logica para turno de la computadora
+
+    const turnoComputadora = () => {
+
+        let puntosComputadora = 0;
+        let puntosAVencer = puntosJugadores[0];
+
+        do {
+
+            const carta = pedirCarta()
+            puntosComputadora = acumularPuntos(puntosJugadores.length - 1, carta)
+
+            crearCarta(carta, puntosJugadores.length - 1)
+
+        } while (puntosComputadora < puntosAVencer && puntosAVencer <= 21);
+
+
+        determinarGanador()
 
     }
 
@@ -185,29 +190,16 @@
     botonDetener.addEventListener('click', () => {
         botonPedir.disabled = true
         botonDetener.disabled = true
-        turnoComputadora(puntosJugador)
+        turnoComputadora()
     })
 
     botonNuevoJuevo.addEventListener('click', () => {
-        // location.reload()
-
-        console.clear()
-
         inicializarJuego();
-
-        // deck = [] //limpiamos a la fuerza la baraja
-        // deck = crearDeck()
-
-        smalls[0].innerText = 0;
-        smalls[1].innerText = 0;
-
-        divCartasJugadores[0].innerText = ''
-        divCartasJugadores[1].innerText = ''
-        botonPedir.disabled = false
-        botonDetener.disabled = false
-
     })
 
+    return {
+        nuevoJuego: inicializarJuego
+    }
 
 })()
 
