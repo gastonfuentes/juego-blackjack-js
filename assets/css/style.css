@@ -1,16 +1,38 @@
-html,
-body {
-    margin: 0;
-    background-color: green;
-    color: white;
+* {
+    min-width: 0;
+    font: inherit;
 }
 
-.titulo {
-    text-align: center;
-    background-color: black;
-    color: white;
-    padding: 2rem;
-    font-size: 4rem;
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+img,
+video,
+svg {
+    display: block;
+    height: auto;
+    max-width: 100%;
+}
+
+body {
+    margin: 0;
+    min-height: 100dvh;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    text-wrap: balance;
+}
+
+p {
+    text-wrap: pretty;
 }
 
 .carta {
@@ -19,9 +41,4 @@ body {
     left: 100px;
     margin-left: -75px;
 
-}
-
-#juegador-cartas,
-#computadora-cartas {
-    height: 240px;
 }
