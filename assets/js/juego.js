@@ -17,7 +17,7 @@ const miModulo = (() => {
         botonNuevoJuevo = document.querySelector('#botonNuevo')
 
     const smalls = document.querySelectorAll('small'),
-        divCartasJugadores = document.querySelectorAll('.divCartas');
+        divCartasJugadores = document.querySelectorAll('.mesa__contenedor__cartas');
 
 
     //funcion para inicializar el juego
