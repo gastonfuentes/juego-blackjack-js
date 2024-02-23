@@ -1,4 +1,3 @@
-
 const miModulo = (() => {
 
     'use strict'
@@ -16,8 +15,14 @@ const miModulo = (() => {
         botonDetener = document.querySelector('#botonDetener'),
         botonNuevoJuevo = document.querySelector('#botonNuevoJuego')
 
-    const smalls = document.querySelectorAll('small'),
-        divCartasJugadores = document.querySelectorAll('.sectorJuego__cartas');
+    const puntajeComputadora = document.querySelector('#puntajeComputadora'),
+        puntajeJugador = document.querySelector('#puntajeJugador');
+
+    const sectorJuegoComputadora = document.querySelector('#sectorJuegoComputadora'),
+        sectorJuegoJugador = document.querySelector('#sectorJuegoJugador');
+
+    const winComputadora = document.querySelector('#winComputadora'),
+        winJugador = document.querySelector('#winJugador')
 
 
     //funcion para inicializar el juego
@@ -30,8 +35,33 @@ const miModulo = (() => {
             puntosJugadores.push(0)
         }
 
-        smalls.forEach(elem => elem.innerText = 0)
-        divCartasJugadores.forEach(elem => elem.innerText = '')
+        /* smalls.forEach(elem => elem.innerText = 0) */
+        puntajeComputadora.innerText = 0;
+        puntajeJugador.innerText = 0;
+        /* divCartasJugadores.forEach(elem => elem.innerText = '') */
+        sectorJuegoComputadora.innerText = '';
+        sectorJuegoJugador.innerText = '';
+
+        winComputadora.classList.add('ocultar');
+        winJugador.classList.add('ocultar')
+
+        //parte nueva de la logica al comenzar con cartas en mano
+
+        //cartas para el jugador
+        for (let i = 0; i < 2; i++) {
+            let carta = pedirCarta()
+            valorCarta(carta)
+            crearCarta(carta, 0)
+            acumularPuntos(0, carta)
+        }
+
+        setTimeout(() => {
+            const carta = pedirCarta()
+            valorCarta(carta)
+            crearCarta(carta, 1)
+            acumularPuntos(1, carta)
+        }, 500)
+
 
         botonPedir.disabled = false
         botonDetener.disabled = false
@@ -95,8 +125,9 @@ const miModulo = (() => {
 
     const acumularPuntos = (posicionJugador, carta) => {
 
-        puntosJugadores[posicionJugador] = puntosJugadores[posicionJugador] + valorCarta(carta)
-        smalls[posicionJugador].innerText = puntosJugadores[posicionJugador]
+        puntosJugadores[posicionJugador] = puntosJugadores[posicionJugador] + valorCarta(carta);
+        console.log(puntosJugadores);
+        posicionJugador === 0 ? puntajeJugador.innerText = puntosJugadores[0] : puntajeComputadora.innerText = puntosJugadores[1]
         return puntosJugadores[posicionJugador]
     }
 
@@ -108,7 +139,7 @@ const miModulo = (() => {
         const imgCarta = document.createElement('img') //creamos una etiqueta img
         imgCarta.src = `assets/cartas/${carta}.png` //le añadimos el src con la carta que obtuvimos
         imgCarta.classList.add('carta') //le agregamos las clases de css necesarias
-        divCartasJugadores[posicion].append(imgCarta) //insertamos la carta creada en el div correspondiente
+        posicion === 0 ? sectorJuegoJugador.append(imgCarta) : sectorJuegoComputadora.append(imgCarta) //insertamos la carta creada en el div correspondiente
 
     }
 
@@ -120,35 +151,43 @@ const miModulo = (() => {
 
         setTimeout(() => {
             if (puntosJugador <= 21 && puntosJugador > puntosComputadora) {
-                alert('gano el jugador')
+                /* alert('gano el jugador') */
+                winJugador.classList.replace('ocultar', 'mostrar')
             } else if (puntosJugador === 21 && puntosComputadora !== 21) {
-                alert('gano el jugador')
+                /* alert('gano el jugador') */
+                winJugador.classList.replace('ocultar', 'mostrar')
             } else if (puntosComputadora > 21) {
-                alert('gana el jugador')
+                /* alert('gana el jugador') */
+                winJugador.classList.replace('ocultar', 'mostrar')
             } else {
-                alert('gana la computadora')
+                winComputadora.classList.replace('ocultar', 'mostrar')
+                /* alert('gana la computadora') */
             }
         }, 50);
 
     }
 
+    //funcion delay
+    function delay(time) {
+        return new Promise(resolve => setTimeout(resolve, time));
+    }
+
 
     //logica para turno de la computadora
 
-    const turnoComputadora = () => {
+    const turnoComputadora = async () => {
 
         let puntosComputadora = 0;
         let puntosAVencer = puntosJugadores[0];
 
-        do {
-
+        while (puntosComputadora < puntosAVencer && puntosAVencer <= 21) {
             const carta = pedirCarta()
+            console.log('dentro del while');
+            await delay(500)
+            console.log('despues del while');
             puntosComputadora = acumularPuntos(puntosJugadores.length - 1, carta)
-
             crearCarta(carta, puntosJugadores.length - 1)
-
-        } while (puntosComputadora < puntosAVencer && puntosAVencer <= 21);
-
+        }
 
         determinarGanador()
 
@@ -157,7 +196,6 @@ const miModulo = (() => {
     //EVENTOS
     //escuchar un evento
     botonPedir.addEventListener('click', () => {
-
 
         const carta = pedirCarta()
         const puntosJugador = acumularPuntos(0, carta)

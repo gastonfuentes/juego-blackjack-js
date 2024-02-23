@@ -20,6 +20,11 @@ svg {
 body {
     margin: 0;
     min-height: 100dvh;
+    background-color: rgb(0, 152, 0);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 h1,
@@ -35,10 +40,45 @@ p {
     text-wrap: pretty;
 }
 
-.carta {
-    position: relative;
-    width: 150px;
-    left: 100px;
-    margin-left: -75px;
+main {
+    display: flex;
+    flex-direction: column;
+    background-color: aquamarine;
+    height: 80vh;
+    justify-content: center;
+    align-items: center;
+    width: 80vw;
+}
 
+.sectorJuego {
+    background-color: beige;
+    height: 40%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.sectorJuego__cartas {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.sectorJuego__titulo--win {
+    display: none;
+}
+
+.mostrar {
+    display: block;
+}
+
+.ocultar {
+    display: none;
+}
+
+.carta {
+    width: 100px;
+    /*  margin-left: -75px; */
 }
