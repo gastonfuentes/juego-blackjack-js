@@ -15,8 +15,7 @@
     <main>
 
         <article class="sectorJuego">
-            <h1 class="sectorJuego__titulo">Computadora - <small id="puntajeComputadora">0</small><strong
-                    id="winComputadora">WIN</strong>
+            <h1 class="sectorJuego__titulo">Computadora - <small id="puntajeComputadora">0</small>
             </h1>
             <section class="sectorJuego__cartas sectorJuego__cartas--computadora" id="sectorJuegoComputadora">
                 <!-- <img class="carta" src="assets/cartas/3C.png" alt=""> -->
@@ -26,9 +25,13 @@
             </section>
         </article>
 
+
+        <article class="sectorMensaje">
+            <strong id="ganadorPerdedor" class="sectorMensaje__mensaje"></strong>
+        </article>
+
         <article class="sectorJuego">
-            <h1 class="sectorJuego__titulo">Jugador - <small id="puntajeJugador">0</small><strong
-                    id="winJugador">WIN</strong>
+            <h1 class="sectorJuego__titulo">Jugador - <small id="puntajeJugador">0</small>
             </h1>
             <section class="sectorJuego__cartas sectorJuego__cartas--jugador" id="sectorJuegoJugador">
                 <!-- <img class="carta" src="assets/cartas/10H.png" alt=""> -->
@@ -40,11 +43,15 @@
         </article>
 
         <article class="botones">
-            <button class="botones__boton botones__boton--botonNuevo" id="botonNuevoJuego">Nuevo juego</button>
-            <button class="botones__boton botones__boton--botonPedir" id="botonPedir" disabled="true">Pedir
-                cartas</button>
-            <button class="botones__boton botones__boton--botonDetener" id="botonDetener"
-                disabled="true">Plantarse</button>
+            <section class="botones__section">
+                <button class="botones__boton--disabled botones__boton--botonPedir" id="botonPedir"
+                    disabled="true">Pedir</button>
+                <button class="botones__boton--disabled botones__boton--botonDetener" id="botonDetener"
+                    disabled="true">Plantarse</button>
+            </section class="botones__section">
+            <section>
+                <button class="botones__boton botones__boton--botonNuevo" id="botonNuevoJuego">Nuevo juego</button>
+            </section>
         </article>
 
     </main>

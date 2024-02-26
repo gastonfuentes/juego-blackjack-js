@@ -21,8 +21,7 @@ const miModulo = (() => {
     const sectorJuegoComputadora = document.querySelector('#sectorJuegoComputadora'),
         sectorJuegoJugador = document.querySelector('#sectorJuegoJugador');
 
-    const winComputadora = document.querySelector('#winComputadora'),
-        winJugador = document.querySelector('#winJugador')
+    const ganadorPerdedor = document.querySelector('#ganadorPerdedor');
 
 
     //funcion para inicializar el juego
@@ -42,8 +41,7 @@ const miModulo = (() => {
         sectorJuegoComputadora.innerText = '';
         sectorJuegoJugador.innerText = '';
 
-        winComputadora.classList.add('ocultar');
-        winJugador.classList.add('ocultar')
+        ganadorPerdedor.innerText = '';
 
         //parte nueva de la logica al comenzar con cartas en mano
 
@@ -64,7 +62,10 @@ const miModulo = (() => {
 
 
         botonPedir.disabled = false
+        botonPedir.classList.replace('botones__boton--disabled', 'botones__boton')
         botonDetener.disabled = false
+        botonDetener.classList.replace('botones__boton--disabled', 'botones__boton')
+
 
     }
 
@@ -152,16 +153,26 @@ const miModulo = (() => {
         setTimeout(() => {
             if (puntosJugador <= 21 && puntosJugador > puntosComputadora) {
                 /* alert('gano el jugador') */
-                winJugador.classList.replace('ocultar', 'mostrar')
+                /* winJugador.classList.replace('ocultar', 'mostrar') */
+                ganadorPerdedor.innerText = 'GANASTE'
+
             } else if (puntosJugador === 21 && puntosComputadora !== 21) {
                 /* alert('gano el jugador') */
-                winJugador.classList.replace('ocultar', 'mostrar')
+                /* winJugador.classList.replace('ocultar', 'mostrar') */
+                ganadorPerdedor.innerText = 'GANASTE'
+
+
             } else if (puntosComputadora > 21) {
                 /* alert('gana el jugador') */
-                winJugador.classList.replace('ocultar', 'mostrar')
+                /* winJugador.classList.replace('ocultar', 'mostrar') */
+                ganadorPerdedor.innerText = 'GANASTE'
+
+
             } else {
-                winComputadora.classList.replace('ocultar', 'mostrar')
+                /* winComputadora.classList.replace('ocultar', 'mostrar') */
                 /* alert('gana la computadora') */
+                ganadorPerdedor.innerText = 'PERDISTE'
+
             }
         }, 50);
 
@@ -211,7 +222,9 @@ const miModulo = (() => {
 
         if (puntosJugador > 21) {
             botonPedir.disabled = true;
+            botonPedir.classList.replace('botones__boton', 'botones__boton--disabled')
             botonDetener.disabled = true;
+            botonDetener.classList.replace('botones__boton', 'botones__boton--disabled')
             console.warn('perdiste guachin te pasaste');
             turnoComputadora(puntosJugador)
 
@@ -227,7 +240,10 @@ const miModulo = (() => {
 
     botonDetener.addEventListener('click', () => {
         botonPedir.disabled = true
+        botonPedir.classList.replace('botones__boton', 'botones__boton--disabled')
         botonDetener.disabled = true
+        botonDetener.classList.replace('botones__boton', 'botones__boton--disabled')
+
         turnoComputadora()
     })
 
