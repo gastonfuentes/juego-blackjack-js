@@ -29,7 +29,7 @@ const miModulo = (() => {
         deck = crearDeck()
         puntosJugadores = []
 
-        console.log(numJugadores);
+        /* console.log(numJugadores); */
         for (let i = 0; i < numJugadores; i++) {
             puntosJugadores.push(0)
         }
@@ -127,7 +127,7 @@ const miModulo = (() => {
     const acumularPuntos = (posicionJugador, carta) => {
 
         puntosJugadores[posicionJugador] = puntosJugadores[posicionJugador] + valorCarta(carta);
-        console.log(puntosJugadores);
+        /* console.log(puntosJugadores); */
         posicionJugador === 0 ? puntajeJugador.innerText = puntosJugadores[0] : puntajeComputadora.innerText = puntosJugadores[1]
         return puntosJugadores[posicionJugador]
     }
@@ -154,24 +154,33 @@ const miModulo = (() => {
             if (puntosJugador <= 21 && puntosJugador > puntosComputadora) {
                 /* alert('gano el jugador') */
                 /* winJugador.classList.replace('ocultar', 'mostrar') */
-                ganadorPerdedor.innerText = 'GANASTE'
+                ganadorPerdedor.innerText = 'Ganaste 🏅'
+                botonPedir.classList.replace('botones__boton', 'botones__boton--disabled')
+                botonDetener.classList.replace('botones__boton', 'botones__boton--disabled')
+
 
             } else if (puntosJugador === 21 && puntosComputadora !== 21) {
                 /* alert('gano el jugador') */
                 /* winJugador.classList.replace('ocultar', 'mostrar') */
-                ganadorPerdedor.innerText = 'GANASTE'
+                ganadorPerdedor.innerText = 'Ganaste 🏅'
+                botonPedir.classList.replace('botones__boton', 'botones__boton--disabled')
+                botonDetener.classList.replace('botones__boton', 'botones__boton--disabled')
 
 
             } else if (puntosComputadora > 21) {
                 /* alert('gana el jugador') */
                 /* winJugador.classList.replace('ocultar', 'mostrar') */
-                ganadorPerdedor.innerText = 'GANASTE'
+                ganadorPerdedor.innerText = 'Ganaste 🏅'
+                botonPedir.classList.replace('botones__boton', 'botones__boton--disabled')
+                botonDetener.classList.replace('botones__boton', 'botones__boton--disabled')
 
 
             } else {
                 /* winComputadora.classList.replace('ocultar', 'mostrar') */
                 /* alert('gana la computadora') */
-                ganadorPerdedor.innerText = 'PERDISTE'
+                ganadorPerdedor.innerText = 'Perdiste 😭'
+                botonPedir.classList.replace('botones__boton', 'botones__boton--disabled')
+                botonDetener.classList.replace('botones__boton', 'botones__boton--disabled')
 
             }
         }, 50);
@@ -193,9 +202,7 @@ const miModulo = (() => {
 
         while (puntosComputadora < puntosAVencer && puntosAVencer <= 21) {
             const carta = pedirCarta()
-            console.log('dentro del while');
             await delay(500)
-            console.log('despues del while');
             puntosComputadora = acumularPuntos(puntosJugadores.length - 1, carta)
             crearCarta(carta, puntosJugadores.length - 1)
         }
@@ -225,13 +232,11 @@ const miModulo = (() => {
             botonPedir.classList.replace('botones__boton', 'botones__boton--disabled')
             botonDetener.disabled = true;
             botonDetener.classList.replace('botones__boton', 'botones__boton--disabled')
-            console.warn('perdiste guachin te pasaste');
             turnoComputadora(puntosJugador)
 
         } else if (puntosJugador === 21) {
             botonPedir.disabled = true;
             botonDetener.disabled = true;
-            console.warn('CONSEGUISTE 21 GUACHOOO');
             turnoComputadora(puntosJugador)
         }
 

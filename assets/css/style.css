@@ -42,6 +42,12 @@ p {
     text-wrap: pretty;
 }
 
+.header {
+    font-size: xxx-large;
+    font-weight: 600;
+    margin-bottom: 2rem;
+}
+
 main {
     display: flex;
     flex-direction: column;
@@ -50,21 +56,30 @@ main {
     justify-content: center;
     align-items: center;
     width: 80vw;
-    gap: 1rem;
+    /* gap: 1rem; */
 }
 
 .sectorJuego {
-    background-color: beige;
+    /* background-color: beige; */
     height: 40%;
     width: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-between;
     text-align: center;
 }
 
+.sectorJuego__titulo__puntos {
+    font-weight: 200;
+    font-size: large;
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.369);
+    border-radius: 12px;
+    padding: 4px 8px;
+}
+
 .sectorMensaje {
-    background-color: brown;
+    /* background-color: brown; */
     height: 8%;
     width: 100%;
     display: flex;
@@ -72,19 +87,36 @@ main {
     align-items: center;
 }
 
+.sectorMensaje__mensaje {
+    font-weight: 600;
+    font-size: xx-large;
+    /* color: rgb(207, 191, 121); */
+    color: antiquewhite;
+    border: 3px solid rgba(255, 255, 255, 0.369);
+    border-radius: 999px;
+    padding: 8px 16px;
+    height: 60px;
+    min-width: 60px;
+    display: flex;
+    align-items: center;
+}
+
 .sectorJuego__cartas {
     width: 100%;
     display: flex;
     justify-content: center;
+    /* height: 60%; */
 }
 
-.sectorJuego__cartas--computadora {
+/* .sectorJuego__cartas img {} */
+
+/* .sectorJuego__cartas--computadora {
     background-color: blueviolet;
 }
 
 .sectorJuego__cartas--jugador {
     background-color: rgb(81, 192, 209);
-}
+} */
 
 .sectorJuego__titulo--win {
     display: none;
@@ -113,9 +145,13 @@ main {
     align-items: center;
     padding: 10px;
     width: 80%;
+    margin-top: 1rem;
 }
 
-/* .botones__section {} */
+.botones__section {
+    display: flex;
+    gap: 1rem;
+}
 
 .botones__boton {
     color: white;
@@ -148,7 +184,7 @@ main {
     z-index: -1;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, red, blue, deeppink, blue, red, blue, deeppink, blue);
+    background: linear-gradient(45deg, white, rgb(255, 255, 119), antiquewhite, rgb(255, 255, 124), white, rgb(255, 255, 127), antiquewhite, white);
     background-size: 800%;
     border-radius: 999px;
     filter: blur(6px);
@@ -174,6 +210,14 @@ main {
 
     body {
         background-image: url('../image/mesa-casino.jpg');
+    }
+
+    .header {
+        color: antiquewhite;
+    }
+
+    .botones {
+        flex-direction: row-reverse;
     }
 
 }
