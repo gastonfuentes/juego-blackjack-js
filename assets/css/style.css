@@ -20,11 +20,13 @@ svg {
 body {
     margin: 0;
     min-height: 100dvh;
-    background-color: rgb(0, 152, 0);
+    background-image: url(../image/mesa-casino-vertical.jpg);
+    background-position: center;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
 }
 
 h1,
@@ -48,6 +50,7 @@ main {
     justify-content: center;
     align-items: center;
     width: 80vw;
+    gap: 1rem;
 }
 
 .sectorJuego {
@@ -66,6 +69,14 @@ main {
     justify-content: center;
 }
 
+.sectorJuego__cartas--computadora {
+    background-color: blueviolet;
+}
+
+.sectorJuego__cartas--jugador {
+    background-color: rgb(81, 192, 209);
+}
+
 .sectorJuego__titulo--win {
     display: none;
 }
@@ -81,4 +92,13 @@ main {
 .carta {
     width: 100px;
     /*  margin-left: -75px; */
+}
+
+
+@media(width >=768px) {
+
+    body {
+        background-image: url('../image/mesa-casino.jpg');
+    }
+
 }
