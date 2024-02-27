@@ -210,16 +210,16 @@ main {
     }
 
     main {
-        height: 85vh;
+        /*  height: 85vh; */
         width: 80vw;
+        gap: 1rem;
     }
 
     .header {
         color: antiquewhite;
-        margin-bottom: 0.5rem;
         font-size: xxx-large;
-        font-weight: 600;
-        /*  margin-bottom: 2rem; */
+        font-weight: 800;
+        /* margin-bottom: 2rem; */
     }
 
     .sectorMensaje {
