@@ -44,8 +44,8 @@ p {
 
 .header {
     font-size: xx-large;
-    font-weight: 400;
-    /* margin-bottom: 2rem; */
+    font-weight: 600;
+    margin-bottom: 1rem;
 }
 
 main {
