@@ -52,7 +52,7 @@ main {
     display: flex;
     flex-direction: column;
     /* background-color: aquamarine; */
-    height: 100dvh;
+    /* height: 100dvh; */
     justify-content: center;
     align-items: center;
     width: 90dvw;
@@ -141,7 +141,7 @@ main {
     justify-content: center;
     align-items: center;
     padding: 10px;
-    width: 80%;
+    width: 100%;
     margin-top: 1rem;
 }
 
